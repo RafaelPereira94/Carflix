@@ -33,6 +33,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("org.litote.kmongo:kmongo:4.7.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
+    implementation ("io.github.cdimascio:dotenv-java:2.2.4")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
