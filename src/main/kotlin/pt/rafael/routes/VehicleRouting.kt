@@ -24,4 +24,14 @@ object VehicleRouting {
             } ?: call.respond(HttpStatusCode.BadRequest, ErrorResponse.BAD_REQUEST_RESPONSE)
         }
     }
+
+    fun Routing.fetchVehicleRoutes() {
+        get("/vehicle/{id}") {
+            val id = call.parameters["id"].toString()
+
+            vehicleService.fetchVehicleById(id) ?.let {
+                foundVehicle -> call.respond(foundVehicle.toDto())
+            } ?: call.respond(HttpStatusCode.NotFound, ErrorResponse.VEHICLE_NOT_FOUND_RESPONSE)
+        }
+    }
 }
