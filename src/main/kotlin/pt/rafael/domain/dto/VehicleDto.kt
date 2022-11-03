@@ -1,7 +1,7 @@
 package pt.rafael.domain.dto
 
-import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
+import java.time.Instant
 
 @Serializable
 data class VehicleDto(
@@ -25,6 +25,6 @@ data class VehicleDto(
     val isDeleted: Boolean,
     val isReserved: Boolean,
     val isSold: Boolean,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val createdAt: String? = Instant.now().toString(),
+    val updatedAt: String? = Instant.now().toString()
 )
