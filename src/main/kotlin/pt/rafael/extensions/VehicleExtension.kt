@@ -1,5 +1,6 @@
 package pt.rafael.extensions
 
+import org.litote.kmongo.id.StringId
 import pt.rafael.domain.Vehicle
 import pt.rafael.domain.dto.VehicleDto
 
@@ -31,6 +32,7 @@ fun Vehicle.toDto(): VehicleDto =
 
 fun VehicleDto.toVehicle(): Vehicle =
     Vehicle(
+        id = StringId(this.id ?: ""),
         brand = this.brand,
         model = this.model,
         version = this.version,
