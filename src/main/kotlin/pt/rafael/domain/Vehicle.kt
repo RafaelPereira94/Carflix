@@ -1,6 +1,5 @@
 package pt.rafael.domain
 
-import kotlinx.datetime.LocalDateTime
 import org.bson.codecs.pojo.annotations.BsonId
 import org.litote.kmongo.Id
 

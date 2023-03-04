@@ -16,7 +16,8 @@ object VehicleRouting {
 
     fun Routing.createVehicleRoute() {
         post("/vehicle") {
-            val request: VehicleDto = call.receive<VehicleDto>()
+            val request: VehicleDto = call.receive()
+            call.application.environment.log.debug("Creating new vehicle: $request")
             val vehicle = request.toVehicle()
 
             vehicleService.createVehicle(vehicle)?.let {
@@ -27,6 +28,7 @@ object VehicleRouting {
 
     fun Routing.fetchAllVehiclesRoutes() {
         get("/vehicle") {
+            call.application.environment.log.debug("Fetching all vehicles")
             vehicleService.fetchAllVehicles()
                 .let { vehicles ->
                     call.respond(HttpStatusCode.OK, vehicles.map { it?.toDto() })
@@ -37,6 +39,7 @@ object VehicleRouting {
     fun Routing.fetchVehicleRoutes() {
         get("/vehicle/{id}") {
             val id = call.parameters["id"].toString()
+            call.application.environment.log.debug("Fetching vehicle with id: $id")
 
             vehicleService.fetchVehicleById(id)?.let { foundVehicle ->
                 call.respond(foundVehicle.toDto())
@@ -47,6 +50,7 @@ object VehicleRouting {
     fun Routing.deleteVehicleRoutes() {
         delete("/vehicle/{id}") {
             val id = call.parameters["id"].toString()
+            call.application.environment.log.debug("Deleting vehicle with id: $id")
             val wasDeleted = vehicleService.deleteVehicleById(id)
 
             if (wasDeleted) {
@@ -61,6 +65,7 @@ object VehicleRouting {
         put("/vehicle/{id}") {
             val id = call.parameters["id"].toString()
             val vehicleInfo = call.receive<VehicleDto>()
+            call.application.environment.log.debug("Updating vehicle with id: $id with values $vehicleInfo")
             val wasUpdated  = vehicleService.updateVehicleById(id, vehicleInfo.toVehicle())
 
             if(wasUpdated) {
