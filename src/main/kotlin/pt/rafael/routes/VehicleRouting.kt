@@ -17,7 +17,7 @@ object VehicleRouting {
     fun Routing.createVehicleRoute() {
         post("/vehicle") {
             val request: VehicleDto = call.receive()
-            call.application.environment.log.debug("Creating new vehicle: $request")
+            call.application.environment.log.debug("Creating new vehicle: {}", request)
             val vehicle = request.toVehicle()
 
             vehicleService.createVehicle(vehicle)?.let {
@@ -65,7 +65,7 @@ object VehicleRouting {
         put("/vehicle/{id}") {
             val id = call.parameters["id"].toString()
             val vehicleInfo = call.receive<VehicleDto>()
-            call.application.environment.log.debug("Updating vehicle with id: $id with values $vehicleInfo")
+            call.application.environment.log.debug("Updating vehicle with id: {} with values {}", id, vehicleInfo)
             val wasUpdated  = vehicleService.updateVehicleById(id, vehicleInfo.toVehicle())
 
             if(wasUpdated) {

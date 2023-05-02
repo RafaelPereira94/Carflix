@@ -1,5 +1,6 @@
 package pt.rafael.service
 
+import com.mongodb.client.MongoCollection
 import io.github.cdimascio.dotenv.Dotenv
 import org.bson.types.ObjectId
 import org.litote.kmongo.*
@@ -12,7 +13,7 @@ class VehicleService {
     private val dotenv: Dotenv = Dotenv.configure().filename(".env").load()
     private val client = KMongo.createClient(dotenv.get("CONNECTION_STRING"))
     private val database = client.getDatabase("Carflix")
-    private val vehicleCollection = database.getCollection<Vehicle>()
+    private val vehicleCollection: MongoCollection<Vehicle> = database.getCollection<Vehicle>()
 
     fun createVehicle(vehicle: Vehicle): Id<Vehicle>? {
         vehicleCollection.insertOne(vehicle)
