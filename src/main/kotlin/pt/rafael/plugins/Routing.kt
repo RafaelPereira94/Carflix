@@ -2,6 +2,7 @@ package pt.rafael.plugins
 
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import pt.rafael.routes.VehicleImageRouting.uploadCarImages
 import pt.rafael.routes.VehicleRouting.createVehicleRoute
 import pt.rafael.routes.VehicleRouting.deleteVehicleRoutes
 import pt.rafael.routes.VehicleRouting.fetchAllVehiclesRoutes
@@ -15,5 +16,6 @@ fun Application.configureRouting() {
         fetchAllVehiclesRoutes()
         deleteVehicleRoutes()
         updateVehicleByIdRoutes()
+        uploadCarImages()
     }
 }
