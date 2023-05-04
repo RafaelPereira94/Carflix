@@ -9,7 +9,7 @@ data class Vehicle(
     val brand: String,
     val model: String,
     val version: String,
-    val images: List<String>,
+    val images: List<CarImage>,
     val price: Double,
     val doors: Int,
     val year: Int,

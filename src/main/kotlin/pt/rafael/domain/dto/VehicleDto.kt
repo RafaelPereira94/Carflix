@@ -1,6 +1,7 @@
 package pt.rafael.domain.dto
 
 import kotlinx.serialization.Serializable
+import pt.rafael.domain.CarImage
 import java.time.Instant
 
 @Serializable
@@ -9,7 +10,7 @@ data class VehicleDto(
     val brand: String,
     val model: String,
     val version: String,
-    val images: List<String>,
+    val images: List<CarImageDTO>,
     val price: Double,
     val doors: Int,
     val year: Int,
