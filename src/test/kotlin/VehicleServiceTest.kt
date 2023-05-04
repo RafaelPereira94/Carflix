@@ -1,6 +1,7 @@
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.result.InsertOneResult
 import junit.framework.TestCase.assertEquals
+import org.junit.Ignore
 import org.junit.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
@@ -16,7 +17,7 @@ class VehicleServiceTest {
     private val insertOneResult = mock<InsertOneResult>()
 
     @Test
-    fun `createVehicle should insert a new vehicle and return an Id`() {
+    fun `CreateVehicle should insert a new vehicle and return an Id`() {
         val vehicle = buildVehicle()
 
         whenever(vehicleCollection.insertOne(any<Vehicle>())).thenReturn(insertOneResult)
@@ -26,12 +27,36 @@ class VehicleServiceTest {
         assertEquals(vehicle.id, result)
     }
 
+    @Test
+    @Ignore
+    fun `FetchVehicleById should retrieve a vehicle`() {
+        //TODO
+    }
+
+    @Test
+    @Ignore
+    fun `FetchAllVehicles should retrieve all vehicles`() {
+        //TODO
+    }
+
+    @Test
+    @Ignore
+    fun `DeleteVehicleById should delete a vehicles by Id`() {
+        //TODO
+    }
+
+    @Test
+    @Ignore
+    fun `UpdateVehicleById should update a vehicle info`() {
+        //TODO
+    }
+
     private fun buildVehicle(): Vehicle {
         return Vehicle(
             id = null,
-            brand = "",
-            model = "",
-            version = "",
+            brand = "mercedes",
+            model = "e",
+            version = "250",
             images = emptyList(),
             price = 1.0,
             doors = 1,
