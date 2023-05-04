@@ -1,7 +1,6 @@
 package pt.rafael.domain.dto
 
 import kotlinx.serialization.Serializable
-import pt.rafael.domain.CarImage
 import java.time.Instant
 
 @Serializable

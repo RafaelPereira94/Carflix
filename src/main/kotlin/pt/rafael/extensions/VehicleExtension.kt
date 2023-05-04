@@ -1,7 +1,9 @@
 package pt.rafael.extensions
 
 import org.litote.kmongo.id.StringId
+import pt.rafael.domain.CarImage
 import pt.rafael.domain.Vehicle
+import pt.rafael.domain.dto.CarImageDTO
 import pt.rafael.domain.dto.VehicleDto
 
 fun Vehicle.toDto(): VehicleDto =
@@ -10,7 +12,7 @@ fun Vehicle.toDto(): VehicleDto =
         brand,
         model,
         version,
-        images,
+        images.map { it.toCarImageDTO() },
         price,
         doors,
         year,
@@ -36,7 +38,7 @@ fun VehicleDto.toVehicle(): Vehicle =
         brand = this.brand,
         model = this.model,
         version = this.version,
-        images = this.images,
+        images = this.images.map { it.toCarImage() },
         price = this.price,
         doors = this.doors,
         year = this.year,
@@ -54,4 +56,18 @@ fun VehicleDto.toVehicle(): Vehicle =
         isSold = this.isSold,
         createdAt = this.createdAt,
         updatedAt = this.updatedAt
+    )
+
+fun CarImageDTO.toCarImage(): CarImage =
+    CarImage(
+        carId = this.carId,
+        imageLabel = this.imageLabel,
+        imageData = this.imageData
+    )
+
+fun CarImage.toCarImageDTO(): CarImageDTO =
+    CarImageDTO(
+        carId,
+        imageLabel,
+        imageData
     )
